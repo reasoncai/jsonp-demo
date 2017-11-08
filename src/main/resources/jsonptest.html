@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        //方法一
+        $.ajax({
+            type:"get",//jsonp只能为get请求
+            async:false,
+            url:"http://localhost:8080/jsonp",
+            dataType:"jsonp",
+            jsonpCallback:"jsonpCallback", //回调函数的名称，对请求地址的callback参数有影响，若为空则穿随机值
+            success:function (json) {
+                console.log('方法一');
+                console.log(json);
+            },
+            error:function () {
+                console.log('方法一fail');
+            }
+
+        });
+    </script>
+
+    <script>
+        //方法二
+        var url = 'http://localhost:8080/jsonp?callback=?';
+        var sentdata = 'ww=pp&wo=p2'
+        $.getJSON(url,sentdata,function (data) {
+            console.log(data);
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>
